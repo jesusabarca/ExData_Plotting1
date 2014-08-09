@@ -8,10 +8,13 @@ if(!file.exists(destfile)) {
 }
 
 ## Unzips dataset
-unzip(destfile)
+unzipedFile <- "./household_power_consumption.txt"
+if(!file.exists(destfile)) {
+    unzip(destfile)
+}
 
 ## Reads the whole dataset since it's not that big
-data <- read.table("household_power_consumption.txt", sep = ";", header = T, na.strings = "?")
+data <- read.table(unzipedFile, sep = ";", header = T, na.strings = "?")
 
 ## Transforms the Date column into a usable date format dd/mm/yyyy
 data$Date <- as.Date(data$Date, format = "%d/%m/%Y")
